@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Notes – madebyfirdous</title>
+  <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/about/">About</a>
+    <a href="/contact/">Contact</a>
+    <a href="/notes/">My Notes</a>
+    <a href="/notes/new/">+ New Note</a>
+    {% if user.is_authenticated %}
+      <a href="/accounts/logout/">Logout</a>
+    {% else %}
+      <a href="/accounts/login/">Login</a>
+    {% endif %}
+  </nav>
+
+  <div class="container">
+    <h1>My Notes</h1>
+
+    <input type="text" id="noteSearch" placeholder="Search notes..." style="width: 100%; padding: 10px; margin-bottom: 20px; border-radius: 8px; border: none; font-size: 16px;">
+
+    {% if notes %}
+      <ul id="noteList">
+        {% for note in notes %}
+          <li style="margin-bottom: 15px;">
+            <strong>{{ note.title }}</strong> – {{ note.created_at|date:"M d, Y H:i" }}<br>
+            <a href="{% url 'note-update' note.pk %}">Edit</a> |
+            <a href="{% url 'note-delete' note.pk %}">Delete</a>
+            <p>{{ note.body|linebreaks }}</p>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No notes yet. <a href="{% url 'note-create' %}">Create your first note</a>!</p>
+    {% endif %}
+  </div>
+
+  <script>
+    const searchInput = document.getElementById('noteSearch');
+    const notes = document.querySelectorAll('#noteList li');
+
+    searchInput.addEventListener('input', function () {
+      const query = this.value.toLowerCase();
+      notes.forEach(note => {
+        const content = note.textContent.toLowerCase();
+        note.style.display = content.includes(query) ? 'block' : 'none';
+      });
+    });
+  </script>
+</body>
+</html>

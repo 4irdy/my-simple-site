@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Note Form – madebyfirdous</title>
+  <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+  <nav>
+  <a href="/">Home</a>
+  <a href="/about/">About</a>
+  <a href="/contact/">Contact</a>
+  <a href="/notes/">My Notes</a>
+  {% if user.is_authenticated %}
+    <a href="/accounts/logout/">Logout</a>
+  {% endif %}
+</nav>
+
+
+  <div class="container">
+    <h1>{% if form.instance.pk %}Edit Note{% else %}New Note{% endif %}</h1>
+
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Save Note</button>
+    </form>
+  </div>
+</body>
+</html>
