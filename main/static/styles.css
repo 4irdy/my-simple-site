@@ -44,7 +44,7 @@ nav a:hover {
 
 /* Logo */
 nav::before {
-    content: "firdous";
+    content: "firdous popal";
     display: block;
     font-size: 22px;
     font-weight: bold;
@@ -75,3 +75,43 @@ p em {
     font-style: italic;
     color: #ffcccc;
 }
+
+/* Form Styling */
+form {
+    margin-top: 30px;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    background-color: #2b2b2b;
+    border: 1px solid #444;
+    color: #f5f5f5;
+    border-radius: 6px;
+    font-size: 15px;
+    font-family: 'Quicksand', sans-serif;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #bbb;
+}
+
+/* Submit Button */
+button {
+    background-color: #800020;
+    color: white;
+    padding: 10px 20px;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #a52a2a;
+}
+

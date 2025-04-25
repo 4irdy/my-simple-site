@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Contact – firdous</title>
+  <title>Contact – firdous popal</title>
   <link rel="stylesheet" href="{% static 'styles.css' %}">
 </head>
 <body>
@@ -19,12 +19,30 @@
     <p>If you’d like to connect, share ideas, or just say hi — here’s how to reach me:</p>
 
     <ul>
-      <li>📧 Email: <em>firdous@email.com</em></li>
+      <li>📧 Email: <em>fpopal@holyfamily.edu</em></li>
       <li>🌐 Portfolio (coming soon): <em>PythonAnywhere site</em></li>
-      <li>📍 Location: Langhorne, PA</li>
+      <li>📍 Location: Philadelphia, PA</li>
     </ul>
 
     <p><em>I look forward to hearing from you — let’s create something amazing!</em></p>
+
+    <hr><br>
+
+    {% if messages %}
+      <ul>
+        {% for message in messages %}
+          <li style="background-color:#800020; padding:10px; border-radius:6px; color:white; margin-bottom:15px;">
+            {{ message }}
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Send Message</button>
+    </form>
   </div>
 </body>
 </html>
